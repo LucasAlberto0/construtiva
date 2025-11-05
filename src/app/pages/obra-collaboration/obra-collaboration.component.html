@@ -1,0 +1,44 @@
+<div class="container-fluid p-3">
+  <h2 class="mb-4">Colaboração e Relatórios</h2>
+  <h4 class="text-muted mb-4">{{ obraNome }}</h4>
+
+  <div class="row">
+    <!-- Chat / Comentários Técnicos -->
+    <div class="col-md-7 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header"><h5>Comentários Técnicos</h5></div>
+        <div class="card-body chat-box">
+          <div *ngFor="let comentario of comentarios" class="chat-message mb-3" [ngClass]="{ 'current-user': comentario.isCurrentUser, 'other-user': !comentario.isCurrentUser }">
+            <div class="message-bubble">
+              <div class="fw-bold author">{{ comentario.autor }}</div>
+              <p class="mb-0">{{ comentario.texto }}</p>
+              <small class="text-muted time">{{ comentario.data }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Digite seu comentário...">
+            <button class="btn btn-primary">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Geração de Relatórios -->
+    <div class="col-md-5 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header"><h5>Gerar Relatórios</h5></div>
+        <div class="card-body">
+          <p>Selecione o tipo de relatório que deseja gerar.</p>
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action">Resumo da Obra (PDF)</button>
+            <button type="button" class="list-group-item list-group-item-action">Histórico de Aditivos (CSV)</button>
+            <button type="button" class="list-group-item list-group-item-action">Checklist de Entrega (PDF)</button>
+            <button type="button" class="list-group-item list-group-item-action">Diário de Obra por Período (PDF)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

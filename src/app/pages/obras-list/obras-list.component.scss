@@ -1,0 +1,29 @@
+h2 {
+  color: var(--text-color);
+}
+
+.list-group-item {
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 0.5rem;
+
+  h5 {
+    color: var(--text-color);
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--text-color);
+  }
+
+  .badge {
+    color: white;
+  }
+
+  &:hover {
+    background-color: var(--bg-color);
+    border-left: 4px solid var(--primary-color);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,29 @@
+<div class="container-fluid p-3">
+  <h2 class="mb-4">Dashboard</h2>
+
+  <!-- Filtros e Atalhos -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar obra por nome ou local...">
+        <button class="btn btn-outline-secondary" type="button">Buscar</button>
+      </div>
+    </div>
+    <div class="col-md-6 text-md-end mt-2 mt-md-0">
+      <a routerLink="/obras" class="btn btn-secondary">Ver Todas as Obras</a>
+    </div>
+  </div>
+
+  <!-- Cartões de Status -->
+  <div class="row">
+    <div *ngFor="let card of statusCards" class="col-md-3 col-sm-6 mb-4">
+      <div class="card status-card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ card.title }}</h5>
+          <p class="card-text display-4">{{ card.count }}</p>
+        </div>
+        <div class="card-footer" [style.backgroundColor]="card.color"></div>
+      </div>
+    </div>
+  </div>
+</div>

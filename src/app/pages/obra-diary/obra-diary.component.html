@@ -1,0 +1,59 @@
+<div class="container-fluid p-3">
+  <h2 class="mb-4">Diário de Obra</h2>
+  <h4 class="text-muted mb-4">{{ obraNome }}</h4>
+
+  <!-- Formulário de Novo Diário -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header">
+      <h5>Adicionar Entrada ao Diário</h5>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="data-diario" class="form-label">Data</label>
+            <input type="date" class="form-control" id="data-diario">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="clima" class="form-label">Clima</label>
+            <input type="text" class="form-control" id="clima" placeholder="Ex: Ensolarado, 25°C">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="equipe" class="form-label">Equipe Presente</label>
+          <input type="text" class="form-control" id="equipe" placeholder="Ex: 15 colaboradores, 2 engenheiros">
+        </div>
+        <div class="mb-3">
+          <label for="atividades" class="form-label">Atividades Realizadas</label>
+          <textarea class="form-control" id="atividades" rows="4"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="fotos-diario" class="form-label">Adicionar Fotos</label>
+          <input class="form-control" type="file" id="fotos-diario" multiple>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Entrada</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Entradas Anteriores -->
+  <div *ngFor="let entrada of diario" class="card shadow-sm mb-3">
+    <div class="card-header d-flex justify-content-between">
+      <strong>{{ entrada.data }}</strong>
+      <small class="text-muted">{{ entrada.clima }}</small>
+    </div>
+    <div class="card-body">
+      <p><strong>Equipe:</strong> {{ entrada.equipe }}</p>
+      <p><strong>Atividades:</strong> {{ entrada.atividades }}</p>
+      <div *ngIf="entrada.fotos.length > 0">
+        <strong>Fotos:</strong>
+        <!-- Placeholder for photos -->
+        <div class="d-flex flex-wrap">
+          <div *ngFor="let foto of entrada.fotos" class="m-1">
+            <span class="badge bg-secondary">{{ foto }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

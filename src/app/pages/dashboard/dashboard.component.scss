@@ -1,0 +1,38 @@
+.status-card {
+  border: none;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+
+  .card-text {
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  .card-footer {
+    height: 6px;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border: none;
+  }
+}
+
+h2 {
+  color: var(--text-color);
+}

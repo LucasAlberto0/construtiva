@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+@use "sass:color";
+
+// 1. Import Inter font from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+// 2. Define the color palette and themes
+:root {
+  // Light Theme (Default)
+  --bg-color: #FFFFFF;
+  --text-color: #212529; // Dark gray
+  --primary-color: #E74C3C;
+  --card-bg-color: #F8F9FA;
+  --border-color: #DEE2E6;
+}
+
+body.dark-mode {
+  // Dark Theme
+  --bg-color: #121212;
+  --text-color: #EAEAEA;
+  --primary-color: #E74C3C;
+  --card-bg-color: #1E1E1E;
+  --border-color: #444444;
+}
+
+// 3. Apply base styles
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+// General component styles
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  &:hover, &:focus, &:active {
+    background-color: color.adjust(#E74C3C, $lightness: -10%);
+    border-color: color.adjust(#E74C3C, $lightness: -10%);
+  }
+}
+
+a {
+  color: var(--primary-color);
+  &:hover {
+    color: color.adjust(#E74C3C, $lightness: -10%);
+  }
+}

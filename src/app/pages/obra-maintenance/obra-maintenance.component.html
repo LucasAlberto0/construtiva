@@ -1,0 +1,50 @@
+<div class="container-fluid p-3">
+  <h2 class="mb-4">Registro de Manutenção Mensal</h2>
+  <h4 class="text-muted mb-4">{{ obraNome }}</h4>
+
+  <!-- Formulário de Novo Registro -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header">
+      <h5>Novo Registro de Manutenção</h5>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="data" class="form-label">Data da Manutenção</label>
+            <input type="date" class="form-control" id="data">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="responsavel" class="form-label">Equipe/Responsável</label>
+            <input type="text" class="form-control" id="responsavel" placeholder="Nome do responsável">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição das Atividades</label>
+          <textarea class="form-control" id="descricao" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="fotos" class="form-label">Upload de Imagens</label>
+          <input class="form-control" type="file" id="fotos" multiple>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Registro</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lista de Datas -->
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h5>Histórico de Manutenções</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of manutencoes" class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ item.data }}</strong> - {{ item.descricao }}
+          <small class="d-block text-muted">Responsável: {{ item.responsavel }}</small>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary">Ver Detalhes</button>
+      </li>
+    </ul>
+  </div>
+</div>

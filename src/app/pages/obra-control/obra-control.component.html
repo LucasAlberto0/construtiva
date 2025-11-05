@@ -1,0 +1,29 @@
+<div class="container-fluid p-3">
+  <h2 class="mb-4">Controle e Histórico</h2>
+  <h4 class="text-muted mb-4">{{ obraNome }}</h4>
+
+  <!-- Status Técnico -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header">
+      Status Técnico Atual
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ statusTecnico }}</p>
+    </div>
+  </div>
+
+  <!-- Timeline de Aditivos e Alterações -->
+  <div class="timeline">
+    <div *ngFor="let item of historico" class="timeline-item">
+      <div class="timeline-dot" [ngClass]="'dot-' + item.tipo"></div>
+      <div class="timeline-content">
+        <div class="d-flex justify-content-between">
+          <h5 class="fw-bold">{{ item.evento }}</h5>
+          <small class="text-muted">{{ item.data }}</small>
+        </div>
+        <p>{{ item.descricao }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
