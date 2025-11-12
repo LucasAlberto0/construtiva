@@ -1,43 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Obra } from '../../models/obra.model';
+import { ObrasService } from '../../services/obras.service';
 
 @Component({
   selector: 'app-obras-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterModule],
   templateUrl: './obras-list.component.html',
   styleUrls: ['./obras-list.component.scss']
 })
-export class ObrasListComponent {
-  obras = [
-    {
-      id: 1,
-      nome: 'Edifício Corporativo Central',
-      localizacao: 'São Paulo, SP',
-      status: 'Em andamento',
-      statusColor: '#007bff'
-    },
-    {
-      id: 2,
-      nome: 'Residencial Vista Verde',
-      localizacao: 'Rio de Janeiro, RJ',
-      status: 'Finalizados',
-      statusColor: '#28a745'
-    },
-    {
-      id: 3,
-      nome: 'Manutenção Ponte Estaiada',
-      localizacao: 'São Paulo, SP',
-      status: 'Manutenção',
-      statusColor: '#ffc107'
-    },
-    {
-      id: 4,
-      nome: 'Shopping Center Norte',
-      localizacao: 'Belo Horizonte, MG',
-      status: 'Suspensos',
-      statusColor: '#6c757d'
-    }
-  ];
+export class ObrasListComponent implements OnInit {
+  obras$!: Observable<Obra[]>;
+
+  constructor(private obrasService: ObrasService) {}
+
+  ngOnInit(): void {
+    this.obras$ = this.obrasService.getObras();
+  }
 }

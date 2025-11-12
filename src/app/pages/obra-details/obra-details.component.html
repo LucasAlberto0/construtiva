@@ -1,43 +1,60 @@
 <div class="container-fluid p-3">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Detalhes da Obra</h2>
-    <a routerLink="/obras" class="btn btn-secondary">Voltar para a Lista</a>
+  <div *ngIf="obra$ | async as obra; else loading">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>{{ obra.nome }}</h2>
+      <a routerLink="/obras" class="btn btn-secondary">Voltar para a Lista</a>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Detalhes da Obra</h4>
+        <div>
+          <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
+          <button class="btn btn-sm btn-outline-danger">Excluir</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <strong>Responsável:</strong>
+            <p>{{ obra.responsavel }}</p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Status:</strong>
+            <p><span class="badge rounded-pill" [ngClass]="{
+              'bg-primary': obra.status === 'Em andamento',
+              'bg-success': obra.status === 'Concluída',
+              'bg-warning': obra.status === 'Pausada'
+            }">{{ obra.status }}</span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <strong>Endereço:</strong>
+            <p>{{ obra.endereco }}</p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Custo Estimado:</strong>
+            <p>{{ obra.custoEstimado | currency:'BRL' }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <strong>Data de Início:</strong>
+            <p>{{ obra.dataInicio | date:'dd/MM/yyyy' }}</p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Previsão de Término:</strong>
+            <p>{{ obra.dataFimPrevista | date:'dd/MM/yyyy' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="card shadow-sm">
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <h4 class="mb-0">{{ obra.nome }}</h4>
-      <div>
-        <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
-        <button class="btn btn-sm btn-outline-danger">Excluir</button>
-      </div>
+  <ng-template #loading>
+    <div class="text-center">
+      <p>Carregando detalhes da obra...</p>
     </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <strong>Localização:</strong>
-          <p>{{ obra.localizacao }}</p>
-        </div>
-        <div class="col-md-6 mb-3">
-          <strong>Contratante:</strong>
-          <p>{{ obra.contratante }}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <strong>Contrato:</strong>
-          <p>{{ obra.contrato }}</p>
-        </div>
-        <div class="col-md-6 mb-3">
-          <strong>Ordem de Serviço (OS):</strong>
-          <p>{{ obra.os }}</p>
-        </div>
-      </div>
-      <hr>
-      <h5>Equipe Responsável</h5>
-      <ul class="list-group">
-        <li *ngFor="let membro of obra.equipe" class="list-group-item">{{ membro }}</li>
-      </ul>
-    </div>
-  </div>
+  </ng-template>
 </div>

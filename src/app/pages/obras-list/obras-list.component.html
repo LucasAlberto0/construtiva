@@ -8,20 +8,38 @@
   <div class="row mb-4">
     <div class="col-md-12">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Buscar obra por nome, localização ou status...">
+        <input type="text" class="form-control" placeholder="Buscar obra por nome, responsável ou status...">
         <button class="btn btn-outline-secondary" type="button">Buscar</button>
       </div>
     </div>
   </div>
 
   <!-- Lista de Obras -->
-  <div class="list-group">
-    <a *ngFor="let obra of obras" [routerLink]="['/obra/details', obra.id]" class="list-group-item list-group-item-action flex-column align-items-start mb-3 shadow-sm">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{ obra.nome }}</h5>
-        <small><span class="badge rounded-pill" [style.backgroundColor]="obra.statusColor">{{ obra.status }}</span></small>
-      </div>
-      <p class="mb-1">{{ obra.localizacao }}</p>
-    </a>
+  <div *ngIf="obras$ | async as obras; else loading">
+    <div *ngIf="obras.length > 0; else noObras" class="list-group">
+      <a *ngFor="let obra of obras" [routerLink]="['/obra/details', obra.id]" class="list-group-item list-group-item-action flex-column align-items-start mb-3 shadow-sm">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ obra.nome }}</h5>
+          <small><span class="badge rounded-pill" [ngClass]="{
+            'bg-primary': obra.status === 'Em andamento',
+            'bg-success': obra.status === 'Concluída',
+            'bg-warning': obra.status === 'Pausada'
+          }">{{ obra.status }}</span></small>
+        </div>
+        <p class="mb-1">Responsável: {{ obra.responsavel }}</p>
+      </a>
+    </div>
   </div>
+
+  <ng-template #loading>
+    <div class="text-center">
+      <p>Carregando obras...</p>
+    </div>
+  </ng-template>
+
+  <ng-template #noObras>
+    <div class="text-center">
+      <p>Nenhuma obra encontrada.</p>
+    </div>
+  </ng-template>
 </div>
